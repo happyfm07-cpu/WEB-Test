@@ -64,3 +64,36 @@ footer { color: var(--muted); font-size: 11px; letter-spacing: .3px; }
   .card { padding: 32px 24px; border-radius: 20px; }
   .info { gap: 32px; }
 }
+
+.greeting-section { padding-top: 24px; border-top: 1px solid var(--border); }
+.greeting-section h2 { margin: 0 0 20px; font-size: 18px; line-height: 1.5; word-break: keep-all; }
+.greeting-section label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 13px; }
+.greeting-controls { display: flex; gap: 10px; }
+.greeting-controls input { min-width: 0; flex: 1; width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--page); color: var(--text); font: inherit; }
+.greeting-controls input::placeholder { color: var(--muted); }
+.greeting-controls input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.greeting-controls input[aria-invalid="true"] { border-color: #df5d6d; }
+.greeting-button { width: auto; flex-shrink: 0; justify-content: center; padding: 14px 18px; }
+.result { overflow-wrap: anywhere; }
+.welcome-pop { color: var(--success); font-size: 24px; font-weight: 700; transform-origin: left center; animation: welcome-pop .7s ease-out both; }
+.confetti { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 10; }
+.confetti-piece { position: absolute; top: -24px; width: 9px; height: 15px; border-radius: 2px; animation: confetti-fall 2s ease-in both; }
+@keyframes welcome-pop {
+  0% { opacity: 0; transform: translateY(20px) scale(.7); }
+  45% { opacity: 1; transform: translateY(-10px) scale(1.08); }
+  70% { transform: translateY(4px) scale(.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes confetti-fall {
+  0% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(var(--drift), 105vh, 0) rotate(var(--spin)); }
+}
+@media (max-width: 480px) {
+  .greeting-controls { flex-direction: column; }
+  .greeting-button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .welcome-pop { animation: none; }
+  .confetti-piece { display: none; }
+}
