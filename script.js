@@ -1,6 +1,14 @@
 const testButton = document.getElementById("test-button");
 const result = document.getElementById("result");
+const themeButton = document.getElementById("theme-button");
 let clickCount = 0;
+
+themeButton.addEventListener("click", () => {
+  const isDark = document.documentElement.dataset.theme !== "dark";
+  document.documentElement.dataset.theme = isDark ? "dark" : "light";
+  themeButton.textContent = isDark ? "밝은 화면" : "어두운 화면";
+  themeButton.setAttribute("aria-pressed", String(isDark));
+});
 
 testButton.addEventListener("click", () => {
   clickCount += 1;
